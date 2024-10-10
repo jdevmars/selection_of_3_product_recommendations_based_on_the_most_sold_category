@@ -1,0 +1,29 @@
+<var rows="GetRowsByTemplate('getMostSoldCategory')"/>
+
+<if condition="rows.Count > 0">
+  <h3>Sku: ${rows[0]['SKU_ID']} | Categoria: ${rows[0]['Categoria']}</h3> 
+   <br>
+   <var recom="GetRowsByTemplate('getThreeRecommendationsBasedOnCategory', new [] { new Param('categoriaTOP', rows[0]['Categoria'] ) })"/>
+	   <if condition="recom.Count > 0">
+     <table border="1">
+     <tr>
+       <td><a href="${recom[0]['URL']}" target="_blank"><img src="${recom[0]['ImageUrlBig']}" width="200px" height="200px"></a></td>
+       <td>${recom[0]['ProductName']}</td>
+       <td>${recom[0]['Preço']}</td>
+     </tr>
+     <tr>
+       <td><a href="${recom[1]['URL']}" target="_blank"><img src="${recom[1]['ImageUrlBig']}" width="200px" height="200px"></a></td>
+       <td>${recom[1]['ProductName']}</td>
+       <td>${recom[1]['Preço']}</td>
+     </tr>
+     <tr>
+       <td><a href="${recom[2]['URL']}" target="_blank"><img src="${recom[2]['ImageUrlBig']}" width="200px" height="200px"></a></td>
+       <td>${recom[2]['ProductName']}</td>
+       <td>${recom[2]['Preço']}</td>
+     </tr>
+   </table>
+   </if>
+   <else>
+     Sem recomendações
+   </else>
+</if>
